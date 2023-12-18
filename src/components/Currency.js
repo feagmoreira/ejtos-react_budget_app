@@ -30,6 +30,7 @@ const Currency = () => {
 
 
     return (
+    <div className='alert alert-secondary'>
         <>
         <Dropdown as={ButtonGroup}>
             <Dropdown.Toggle variant="success" id="currency">Currency ({currency} {name_currency})</Dropdown.Toggle>
@@ -41,6 +42,7 @@ const Currency = () => {
 	        </Dropdown.Menu>
         </Dropdown>
     </>
+    </div>
     );
 };
 
