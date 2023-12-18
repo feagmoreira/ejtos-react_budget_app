@@ -1,4 +1,8 @@
 import React, { useContext } from 'react';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import { AppContext } from '../context/AppContext';
 
 const Currency = () => {
@@ -26,18 +30,17 @@ const Currency = () => {
 
 
     return (
-        <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle" type="button" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Currency ({currency} {name_currency})
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button" onClick={changeCurrency("$")}>$ Dollar</button>
-            <button class="dropdown-item" type="button" onClick={changeCurrency("£")}>£ Pound</button>
-            <button class="dropdown-item" type="button" onClick={changeCurrency("€")}>€ Euro</button>
-            <button class="dropdown-item" type="button" onClick={changeCurrency("₹")}>₹ Ruppee</button>
-            </div>
-        </div>
-        
+        <>
+        <Dropdown as={ButtonGroup}>
+            <Dropdown.Toggle variant="success" id="currency">Currency ({currency} {name_currency})</Dropdown.Toggle>
+                <Dropdown.Menu >
+                    <Dropdown.Item onClick={event => changeCurrency("$")}>$ Dollar</Dropdown.Item>
+                    <Dropdown.Item onClick={event => changeCurrency("£")}>£ Pound</Dropdown.Item>
+                    <Dropdown.Item onClick={event => changeCurrency("€")}>€ Euro</Dropdown.Item>
+	                <Dropdown.Item onClick={event => changeCurrency("₹")}>₹ Ruppee</Dropdown.Item>
+	        </Dropdown.Menu>
+        </Dropdown>
+    </>
     );
 };
 
