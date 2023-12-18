@@ -2,8 +2,21 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Currency = () => {
-    const { dispatch } = useContext(AppContext);
-
+    const { dispatch, currency } = useContext(AppContext);
+    console.log(currency)
+    function currency_name(){
+        switch(currency){
+        case '$':
+            return "Dollar";
+        case '£':
+            return "Pound";
+        case '€':
+            return "Euro";
+        case '₹':
+            return "Ruppee";
+        }
+    } 
+    const name_currency = currency_name();
     const changeCurrency = (val) => {
         dispatch({
             type: 'CHG_CURRENCY',
@@ -13,14 +26,16 @@ const Currency = () => {
 
 
     return (
-        <div className='dropdown'> Currency {
-            <select name="Currency" id="Currency" onChange={event => changeCurrency(event.target.value)}>
-                <option value="$">Dollar($)</option>
-                <option value="£">Pound(£)</option>
-                <option value="€">Euro(€)</option>
-                <option value="₹">Ruppee(₹)</option>
-            </select>
-        }
+        <div class="dropdown">
+            <button class="btn btn-success dropdown-toggle" type="button" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Currency ({currency} {name_currency})
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button" onClick={changeCurrency("$")}>$ Dollar</button>
+            <button class="dropdown-item" type="button" onClick={changeCurrency("£")}>£ Pound</button>
+            <button class="dropdown-item" type="button" onClick={changeCurrency("€")}>€ Euro</button>
+            <button class="dropdown-item" type="button" onClick={changeCurrency("₹")}>₹ Ruppee</button>
+            </div>
         </div>
         
     );
